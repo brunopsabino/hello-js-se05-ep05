@@ -1,3 +1,4 @@
+//Criação de rotas para a tabela produto
 const cfg = require("./knexfile")
 const knex = require("knex")(cfg.development)
 const express = require("express")
@@ -12,8 +13,8 @@ app.use(bodyParser.urlencoded())
 app.use(express.static("public"))
 
 
-app.get("/listcontatos", (req, res) => {
-  knex("contato").select().then(ret => {
+app.get("/listprodutos", (req, res) => {
+  knex("produto").select().then(ret => {
     res.send(ret)
   }).catch(err => {
     res.status(500).send(err)
@@ -21,9 +22,9 @@ app.get("/listcontatos", (req, res) => {
   })  
 })
 
-app.post("/addcontato", (req, res) => {
-  const novocontato = req.body
-  knex("contato").insert(novocontato, "idcontato").then(ret => {
+app.post("/addproduto", (req, res) => {
+  const novoproduto = req.body
+  knex("produto").insert(novoproduto, "idcproduto").then(ret => {
       res.send(ret)
   }).catch(err => {
     res.status(500).send(err)
@@ -34,6 +35,3 @@ app.post("/addcontato", (req, res) => {
 knex.migrate.latest().then(_ => 
   app.listen(3000, _ => 
     console.log("server online!")))
-
-
-
