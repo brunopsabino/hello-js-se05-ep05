@@ -10,7 +10,6 @@ app.use(morgan("dev"))
 app.use(bodyParser.urlencoded())
 
 app.use(express.static("public"))
-app.use(express.static("public/css"))
 
 
 app.get("/listcontatos", (req, res) => {
